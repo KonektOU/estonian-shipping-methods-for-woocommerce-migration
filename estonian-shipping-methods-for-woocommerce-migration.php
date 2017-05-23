@@ -42,6 +42,11 @@ class Estonian_Shipping_Methods_For_WooCommerce_Migration {
 			'itella_smartpost_estonia' => [
 				'class' => 'WC_Estonian_Shipping_Method_Smartpost_Estonia',
 				'field' => 'wc_shipping_smartpost_terminal'
+			],
+			'itella_smartpost_estonia' => [
+				'class'    => 'WC_Estonian_Shipping_Method_Smartpost_Estonia',
+				'field'    => '_pickup_location',
+				'is_value' => true
 			]
 		];
 
@@ -65,7 +70,13 @@ class Estonian_Shipping_Methods_For_WooCommerce_Migration {
 						continue;
 					}
 
-					$terminal_name = $wc_estonian_shipping_methods->methods[ $replace['class'] ]->get_terminal_name( $terminal_id );
+					if( isset( $replace['is_value'] ) && $replace['is_value'] === true ) {
+						$terminal_name = $terminal_id;
+					}
+					else {
+						$terminal_name = $wc_estonian_shipping_methods->methods[ $replace['class'] ]->get_terminal_name( $terminal_id );
+					}
+
 
 					// Output selected terminal to user customer details
 					if( current_filter() == 'woocommerce_order_details_after_customer_details' ) {
