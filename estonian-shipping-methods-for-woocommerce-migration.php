@@ -35,15 +35,18 @@ class Estonian_Shipping_Methods_For_WooCommerce_Migration {
 
 	public function register_methods() {
 		$replace_methods = [
-			'ms_omniva_estonia' => [
-				'class' => 'WC_Estonian_Shipping_Method_Omniva_Parcel_Machines_EE',
-				'field' => '_pickup_location_key'
+			[
+				'method'   => 'ms_omniva_estonia',
+				'class'    => 'WC_Estonian_Shipping_Method_Omniva_Parcel_Machines_EE',
+				'field'    => '_pickup_location_key'
 			],
-			'itella_smartpost_estonia' => [
-				'class' => 'WC_Estonian_Shipping_Method_Smartpost_Estonia',
-				'field' => 'wc_shipping_smartpost_terminal'
+			[
+				'method'   => 'itella_smartpost_estonia',
+				'class'    => 'WC_Estonian_Shipping_Method_Smartpost_Estonia',
+				'field'    => 'wc_shipping_smartpost_terminal'
 			],
-			'itella_smartpost_estonia' => [
+			[
+				'method'   => 'itella_smartpost_estonia',
 				'class'    => 'WC_Estonian_Shipping_Method_Smartpost_Estonia',
 				'field'    => '_pickup_location',
 				'is_value' => true
@@ -61,8 +64,8 @@ class Estonian_Shipping_Methods_For_WooCommerce_Migration {
 			$order = wc_get_order( $order );
 		}
 
-		foreach( $this->replace as $method => $replace ) {
-			if( $order->has_shipping_method( $method ) ) {
+		foreach( $this->replace as $replace ) {
+			if( $order->has_shipping_method( replace['method'] ) ) {
 				if( isset( $wc_estonian_shipping_methods->methods[ $replace['class'] ] ) && $wc_estonian_shipping_methods->methods[ $replace['class'] ] !== false ) {
 					$terminal_id = get_post_meta( wc_esm_get_order_id( $order ), $replace['field'], true );
 
