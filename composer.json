@@ -1,0 +1,16 @@
+{
+    "name": "konekt/estonian-shipping-methods-for-woocommerce-migration",
+    "description": "Shows the data from your previous shipping methods to use the newer and better Estonian Shipping Methods for WooCommerce plugin.",
+    "keywords": ["woocommerce", "shipping"],
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Risto Niinemets",
+            "email": "risto.niinemets@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "composer/installers": "~1.0"
+    }
+}
