@@ -65,7 +65,7 @@ class Estonian_Shipping_Methods_For_WooCommerce_Migration {
 		}
 
 		foreach( $this->replace as $replace ) {
-			if( $order->has_shipping_method( replace['method'] ) ) {
+			if( $order->has_shipping_method( $replace['method'] ) ) {
 				if( isset( $wc_estonian_shipping_methods->methods[ $replace['class'] ] ) && $wc_estonian_shipping_methods->methods[ $replace['class'] ] !== false ) {
 					$terminal_id = get_post_meta( wc_esm_get_order_id( $order ), $replace['field'], true );
 
